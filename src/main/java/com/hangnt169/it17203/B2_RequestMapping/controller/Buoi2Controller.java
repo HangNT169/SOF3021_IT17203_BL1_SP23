@@ -11,49 +11,34 @@ import java.util.List;
 @Controller
 public class Buoi2Controller {
 
-    private List<SinhVien>sinhViens= new ArrayList<>();
-    @GetMapping("/sinh-vien/hien-thi")
-    public String hienThiDanhSachSinhVien(Model model){
+    private List<SinhVien> sinhViens = new ArrayList<>();
 
-       if(sinhViens.isEmpty()){
-           sinhViens.add(new SinhVien("hangnt169","Nguyen Thuy Hang",10));
-           sinhViens.add(new SinhVien("phongtt35","Nguyen Thuy Hang1",13));
-           sinhViens.add(new SinhVien("nguyenvv4","Nguyen Thuy Hang2",15));
-           sinhViens.add(new SinhVien("tiennh21","Nguyen Thuy Hang3",16));
-           sinhViens.add(new SinhVien("dungna29","Nguyen Thuy Hang4",9));
-           sinhViens.add(new SinhVien("khanhpg","Nguyen Thuy Hang5",7));
-       }
-        model.addAttribute("sinhViens",sinhViens);
-        return "buoi2";
+    @GetMapping("/sinh-vien/hien-thi")
+    public String hienThiDanhSachSinhVien(Model model) {
+
+        if (sinhViens.isEmpty()) {
+            sinhViens.add(new SinhVien("hangnt169", "Nguyen Thuy Hang", 10));
+            sinhViens.add(new SinhVien("phongtt35", "Nguyen Thuy Hang1", 13));
+            sinhViens.add(new SinhVien("nguyenvv4", "Nguyen Thuy Hang2", 15));
+            sinhViens.add(new SinhVien("tiennh21", "Nguyen Thuy Hang3", 16));
+            sinhViens.add(new SinhVien("dungna29", "Nguyen Thuy Hang4", 9));
+            sinhViens.add(new SinhVien("khanhpg", "Nguyen Thuy Hang5", 7));
+        }
+        model.addAttribute("sinhViens", sinhViens);
+        return "buoi3/buoi2";
     }
 
-    @GetMapping("/detail-sinh-vien/{ma}")
-    public String detailSinhVien(@PathVariable("ma") String ma, Model model){
-        SinhVien sinhVien = new SinhVien();
+    @GetMapping("/sinh-vien/detail/{maSinhVien}")
+    public String detailSinhVien(@PathVariable("maSinhVien")String ma,Model model){
         for(SinhVien sv : sinhViens){
             if(sv.getMa().equals(ma)){
-                sinhVien = sv;
+                model.addAttribute("sinhVien",sv);
             }
         }
-        model.addAttribute("sinhVien",sinhVien);
-        return "detailSinhVien";
+        return "buoi3/detailSinhVien";
     }
-
-    @GetMapping("/sinh-vien/search-sinh-vien")
-    public String searchSinhVien(@ModelAttribute() String ten, Model model){
-        List<SinhVien> list = new ArrayList<>();
-        for(SinhVien sv : sinhViens){
-            System.out.println(sv.getTen().contains(ten));
-            if(sv.getTen().contains(ten)){
-                list.add(sv);
-            }
-        }
-        model.addAttribute("sinhViens",list);
-        return "buoi2";
-    }
-
-    @GetMapping("/delete-sinh-vien/{ma}")
-    public String deleteSinhVien(@PathVariable("ma") String ma,Model model){
+    @GetMapping ("/sinh-vien/delete/{maSinhVien}")
+    public String deleteSinhVien(@PathVariable("maSinhVien")String ma){
         for(SinhVien sv : sinhViens){
             if(sv.getMa().equals(ma)){
                 sinhViens.remove(sv);
@@ -63,27 +48,15 @@ public class Buoi2Controller {
         return "redirect:/sinh-vien/hien-thi";
     }
 
-    @GetMapping("/view-update-sinh-vien/{ma}")
-    public String viewUpdateSinhVien(@PathVariable("ma") String ma, Model model){
-        SinhVien sinhVien = new SinhVien();
+    @GetMapping("/sinh-vien/search")
+    public String searchSinhVien( @RequestParam(name = "ten", required = false, defaultValue = "") String ten, Model model){
+        List<SinhVien> list = new ArrayList<>();
         for(SinhVien sv : sinhViens){
-            if(sv.getMa().equals(ma)){
-                sinhVien = sv;
+            if(sv.getTen().contains(ten)){
+                list.add(sv);
             }
         }
-        model.addAttribute("sinhVien",sinhVien);
-        return "updateSinhVien";
-    }
-
-    @PostMapping("/view-update-sinh-vien/update-sinh-vien")
-    public String updateSinhVien(@ModelAttribute() SinhVien sinhVien, Model model){
-        int index=0;
-        for(SinhVien sv : sinhViens){
-            if(sv.getMa().equals(sinhVien.getMa())){
-                sinhViens.set(index,sinhVien);
-            }
-            index++;
-        }
-        return "redirect:/sinh-vien/hien-thi";
+        model.addAttribute("sinhViens",list);
+        return "buoi3/buoi2";
     }
 }
