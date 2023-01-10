@@ -104,3 +104,5 @@ Trong Spring Boot, có hai dạng Controller, tương ứng hai annotation trên
 <br/>
 https://viblo.asia/p/spring-boot-xu-ly-request-trong-controller-nhu-the-nao-phan-1-gGJ59ANj5X2
 ## Buổi 4: Validator
+https://viblo.asia/p/dung-validation-bang-tay-trong-spring-boot-phan-1-3P0lPGyoZox
+https://techmaster.vn/posts/36877/xac-thuc-request-bang-spring-boot-validation

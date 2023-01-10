@@ -12,7 +12,7 @@
         <input placeholder="nhập " id="ten" name="ten1" >
         <button type="submit">tìm kiếm</button>
     </form>
-
+    <button><a href="/sinh-vien/view-add">Add Sinh Vien</a></button>
     <thead>
     <tr>
         <th>Mã</th>
