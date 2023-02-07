@@ -1,4 +1,4 @@
-package com.hangnt169.it17203.B8_JPA_P1.entity;
+package com.hangnt169.it17203.B8_JPA.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

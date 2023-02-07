@@ -7,7 +7,21 @@
     <title>Insert title here</title>
 </head>
 <body>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Category Code</th>
+        <th>Category Name</th>
+    </tr>
+    <c:forEach items="${categories}" var="acc">
+        <tr>
+            <td>${acc.id}</td>
+            <td>${acc.categoryCode}</td>
+            <td>${acc.categoryName}</td>
+        </tr>
+    </c:forEach>
 
+</table>
 
 </body>
 </html>
