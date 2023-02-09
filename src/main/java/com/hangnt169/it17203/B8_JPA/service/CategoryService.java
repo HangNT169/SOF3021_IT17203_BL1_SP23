@@ -1,16 +1,15 @@
 package com.hangnt169.it17203.B8_JPA.service;
 
 import com.hangnt169.it17203.B8_JPA.entity.Category;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 /**
  * @author hangnt169
  */
 public interface CategoryService {
 
-    List<Category>getAll();
+    Page<Category> getAll(Integer pageNo,Integer size);
 
-    Category searchCategory(String categoryCode,String categoryName);
+    Category searchCategory(String categoryCode, String categoryName);
 
 }
